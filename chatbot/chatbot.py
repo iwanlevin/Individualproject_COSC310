@@ -13,10 +13,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from chatbot import sentiment
 from nltk.corpus import wordnet
-#from chatbot.gtranslate import translate as trans
-#from chatbot.gtranslate import detectlang as dlang
-#from chatbot.gtranslate import translateto as transto
 from googletrans import Translator
+from chatbot.wolfram import define
 
 #nltk.download(quiet = True)
 
@@ -93,13 +91,16 @@ class ChatBot():
 
         # gives the ability to query word definitions using the wolfram alpha computational engine to supply
         # word definitions
-
-        if userInput == "define":
-            definition = ""
-            return definition
+        definition = userInput.split(" ",1)
+        print(definition)
+        if definition[0] == "define":
+            answer = define(userInput)
+            userInput = userInput.split(" ")
+            return userInput[1].capitalize() + ":\n" + answer
 
         dlang = Translator()
         trans = Translator()
+
         #detects languages other than english so it can accept all languages allowed by google translate
         #and then respond in the user's input language.
 
