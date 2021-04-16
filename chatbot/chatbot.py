@@ -13,9 +13,10 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from chatbot import sentiment
 from nltk.corpus import wordnet
-from gtranslate import translate
-from gtranslate import detectlang
-import wolfram
+#from chatbot.gtranslate import translate as trans
+#from chatbot.gtranslate import detectlang as dlang
+#from chatbot.gtranslate import translateto as transto
+from googletrans import Translator
 
 #nltk.download(quiet = True)
 
@@ -89,6 +90,20 @@ class ChatBot():
 
     def botResponse(self, userInput):
         userInput = userInput.lower()   #convert text to lowercase
+        dlang = Translator()
+        trans = Translator()
+        #detects languages other than english so it can accept all languages allowed by google translate
+        #and then respond in the user's input language.
+
+        if dlang.detect(userInput).lang == "en":
+            lang = "en"
+            print(lang)
+        else:
+            lang = dlang.detect(userInput).lang
+            userInput = trans.translate(userInput, dest="en").text
+            print(lang)
+            print(userInput)
+
         reasonableResponse = ["I'm sorry, I didn't quite understand what you just typed.","Sorry I'm not capable talking about that right now.",
                                       "Your choice of discussion is out of my range.", "I didn't get that could you try again?",
                                       "Unfortunealy I don't recognize what your trying to tell me."]
@@ -121,7 +136,7 @@ class ChatBot():
 
             if similarityScoresList[indexOfQuote[0]] != 0.00:       #if there are posQuotes similar to users' input it outputs most similar quote
                 self.posQuotes.remove(errorResponse)                       #otherwise, it outputs that it does not understand users' input
-                return response + self.posQuotes[indexOfQuote[0]]
+                return trans.translate(response + self.posQuotes[indexOfQuote[0]], lang).text
             elif similarityScoresList[indexOfQuote[0]] == 0.00:
 
                 self.posQuotes.remove(errorResponse)
@@ -138,9 +153,9 @@ class ChatBot():
                     indexOfQuote = indexOfQuote[1:]
                     if similarityScoresList[indexOfQuote[0]] != 0.00:       #if there posQuotes similar to users' input it outputs most similar quote
                         self.posQuotes.remove(z)                       #otherwise, it outputs that it does not understand users' input
-                        return response + self.posQuotes[indexOfQuote[0]]
+                        return trans.translate(response + self.posQuotes[indexOfQuote[0]], lang).text
                     self.posQuotes.remove(z)
-                return response + ' ' + random.choice(reasonableResponse)
+                return trans.translate(response + ' ' + random.choice(reasonableResponse), lang).text
         else:
             errorResponse = self.sc.errorHandlingArray(userInput)
             self.negQuotes.append(errorResponse) #add users' input to end of negQuotes list
@@ -154,8 +169,8 @@ class ChatBot():
             indexOfQuote = indexOfQuote[1:]     #remove the first element as it is the index of the users' input
 
             if similarityScoresList[indexOfQuote[0]] != 0.00:       #if there negQuotes similar to users' input it outputs most similar quote
-                self.negQuotes.remove(errorResponse)                       #otherwise, it outputs that it does not understand users' input
-                return response + self.negQuotes[indexOfQuote[0]]
+                self.negQuotes.remove(errorResponse)                #otherwise, it outputs that it does not understand users' input
+                return trans.translate(response + self.negQuotes[indexOfQuote[0]], lang).text
             elif similarityScoresList[indexOfQuote[0]] == 0.00:
 
                 self.negQuotes.remove(errorResponse)
@@ -171,8 +186,8 @@ class ChatBot():
                     indexOfQuote = self.sortIndexList(similarityScoresList)  #this gives us the indices of the most similar to least similar quotes
                     indexOfQuote = indexOfQuote[1:]
                     if similarityScoresList[indexOfQuote[0]] != 0.00:       #if there negQuotes similar to users' input it outputs most similar quote
-                        self.uotes.remove(z)                       #otherwise, it outputs that it does not understand users' input
-                        return response + self.negQuotes[indexOfQuote[0]]
+                        self.negQuotes.remove(z)                       #otherwise, it outputs that it does not understand users' input
+                        return trans.translate(response + self.negQuotes[indexOfQuote[0]], lang).text
                     self.negQuotes.remove(z)
-                return response + ' ' + random.choice(reasonableResponse)
+                return trans.translate(response + ' ' + random.choice(reasonableResponse), lang).text
 
