@@ -90,6 +90,14 @@ class ChatBot():
 
     def botResponse(self, userInput):
         userInput = userInput.lower()   #convert text to lowercase
+
+        # gives the ability to query word definitions using the wolfram alpha computational engine to supply
+        # word definitions
+
+        if userInput == "define":
+            definition = ""
+            return definition
+
         dlang = Translator()
         trans = Translator()
         #detects languages other than english so it can accept all languages allowed by google translate
