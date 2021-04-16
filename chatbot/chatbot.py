@@ -13,6 +13,10 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from chatbot import sentiment
 from nltk.corpus import wordnet
+from gtranslate import translate
+from gtranslate import detectlang
+import wolfram
+
 #nltk.download(quiet = True)
 
 

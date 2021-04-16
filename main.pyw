@@ -3,7 +3,6 @@ from chatbot.spellcheck import SpellCheck
 import PySimpleGUI as sg
 import sys
 import subprocess
-
 # Define the window's contents
 sg.theme('Dark2')
 layout = [[sg.MLine(key='-ML1-'+sg.WRITE_ONLY_KEY, size=(80,10))],
