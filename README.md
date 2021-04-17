@@ -25,6 +25,14 @@ Open up command prompt and type the following:
 
 `pip install -U scikit-learn` 
 
+Next you need to install the packages for Google Translate and Wolfram alpha.
+Type the following in the command prompt:
+
+`pip install googletrans == 3.1.0a0`
+
+`pip install wolframalpha == 5.0.0`
+
+
 You should then open up a Python interactive console (IDLE) and download all nltk packages by:
 
 `import nltk`  
