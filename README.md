@@ -1,4 +1,4 @@
-# Assignment 3 - An Interactive Conversational Agent
+# Individual Assingment - An Interactive Conversational Agent
 
 This Project was developed by Sebi Unipan, Chinmay Gopal, Iwan Levin, Amritpal Aujla and Ali Ibrahim.
 ## Description
