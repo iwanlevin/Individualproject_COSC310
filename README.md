@@ -80,17 +80,16 @@ Calm bot: if you are feeling lazy, go workout.
 
 Wolfram Alpha API: Using the API I queried the wolfram alpha computational engine to gain a definition of a word when the sentance is started with define. When a user input is started with 'define' the chat bot queries wolfram alpha and return the definition of the word imediatily preceeding the 'define' tag.
 
-Example:
-You: define anxiety
-Calm bot: Anxiety:
-1 | noun | (psychiatry) a relatively permanent state of worry and nervousness occurring in a variety of mental disorders, usually accompanied by compulsive behavior or attacks of panic
+Example: <br />
+You: define anxiety <br />
+Calm bot: Anxiety: <br />
+1 | noun | (psychiatry) a relatively permanent state of worry and nervousness occurring in a variety of mental disorders, usually accompanied by compulsive behavior or attacks of panic <br />
 2 | noun | a vague unpleasant emotion that is experienced in anticipation of some (usually ill-defined) misfortune
 
 Google Translate API: Using a module for python that allows a user to make use of the google translate API with out having to pay for googl cloud services the user input is analized to determine the language it was written in then is translated to english so the bot can formulate a response based on user input then the bot response is translated into the language that the user input was deteermined to be. So the bot can converse in any language supported by google translate.
 
-Example:
-You: Hello
-Calm bot: Hello
-You: Je suis anxieux.
+Example: <br />
+You: Hello <br />
+Calm bot: Hello <br />
+You: Je suis anxieux. <br />
 Calm bot: Je suis là pour vous aider à aller mieux.
-
